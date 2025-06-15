@@ -1,6 +1,8 @@
 package expo.modules.selectabletext
 
 import android.content.Context
+import android.text.SpannableString
+import android.text.Spanned
 import android.view.ActionMode
 import android.widget.TextView
 import expo.modules.kotlin.AppContext
@@ -12,7 +14,7 @@ class ReactNativeSelectableTextView(context: Context, appContext: AppContext) : 
   
   init {
     // Set up the textView properties
-    text = "Hello from Android TextView!"
+    text = ""
     textSize = 18f
     setTextIsSelectable(true)
     
@@ -62,13 +64,20 @@ class ReactNativeSelectableTextView(context: Context, appContext: AppContext) : 
     // Post to ensure this runs after the text is properly set
     post {
       val text = text?.toString() ?: ""
-      if (selStart >= 0 && selEnd >= 0 && selStart != selEnd && selEnd <= text.length) {
-        val selectedText = text.substring(selStart, selEnd)
-        onTextSelectionChange(mapOf(
-          "selectedText" to selectedText,
-          "start" to selStart,
-          "end" to selEnd
-        ))
+      if (selStart >= 0 && selEnd >= 0 && selStart != selEnd) {
+        // Ensure start is always less than or equal to end
+        val actualStart = minOf(selStart, selEnd)
+        val actualEnd = maxOf(selStart, selEnd)
+        
+        // Bounds check
+        if (actualStart < text.length && actualEnd <= text.length) {
+          val selectedText = text.substring(actualStart, actualEnd)
+          onTextSelectionChange(mapOf(
+            "selectedText" to selectedText,
+            "start" to actualStart,
+            "end" to actualEnd
+          ))
+        }
       } else if (selStart == selEnd) {
         // Selection cleared
         onTextSelectionChange(mapOf(
@@ -77,20 +86,6 @@ class ReactNativeSelectableTextView(context: Context, appContext: AppContext) : 
           "end" to 0
         ))
       }
-    }
-  }
-  
-  override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-    super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-    
-    // Ensure the view sizes itself to fit content like a Text component
-    val widthMode = MeasureSpec.getMode(widthMeasureSpec)
-    val heightMode = MeasureSpec.getMode(heightMeasureSpec)
-    
-    if (heightMode != MeasureSpec.EXACTLY) {
-      // Allow the TextView to size itself to content height
-      val desiredHeight = layout?.height ?: measuredHeight
-      setMeasuredDimension(measuredWidth, desiredHeight)
     }
   }
 }

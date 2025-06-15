@@ -1,6 +1,6 @@
 {
-  "name": "react-native-selectable-text",
-  "version": "0.1.0",
+  "name": "@alexcheuk/react-native-selectable-text",
+  "version": "1.0.2",
   "description": "My new module",
   "main": "build/index.js",
   "types": "build/index.d.ts",
@@ -28,16 +28,25 @@
   "author": "Alex Cheuk <cheuk.alex@gmail.com> (alexcheuk)",
   "license": "MIT",
   "homepage": "https://github.com/alexcheuk#readme",
-  "dependencies": {},
   "devDependencies": {
     "@types/react": "~19.0.0",
-    "expo-module-scripts": "^4.1.6",
     "expo": "~53.0.0",
+    "expo-module-scripts": "^4.1.6",
     "react-native": "0.79.1"
   },
   "peerDependencies": {
     "expo": "*",
     "react": "*",
     "react-native": "*"
+  },
+  "expo": {
+    "autolinking": {
+      "ios": {
+        "podName": "ReactNativeSelectableText"
+      },
+      "android": {
+        "packageName": "expo.modules.selectabletext"
+      }
+    }
   }
 }

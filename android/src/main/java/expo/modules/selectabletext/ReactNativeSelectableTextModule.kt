@@ -9,7 +9,7 @@ class ReactNativeSelectableTextModule : Module() {
 
     View(ReactNativeSelectableTextView::class) {
       Prop("text") { view: ReactNativeSelectableTextView, text: String? ->
-        view.text = text ?: "Hello from Android TextView!"
+        view.text = text ?: ""
         // Request layout to recalculate size
         view.requestLayout()
       }

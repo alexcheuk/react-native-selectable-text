@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../src/index.ts"],"names":[],"mappings":"AAAA,OAAO,EACL,OAAO,IAAI,QAAQ,GAGpB,MAAM,iCAAiC,CAAC","sourcesContent":["export {\n  default as TextView,\n  Props as TextViewProps,\n  OnTextSelectionChangeEvent,\n} from \"./ReactNativeSelectableTextView\";\n"]}
