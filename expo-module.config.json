@@ -1,9 +1,17 @@
 {
-  "platforms": ["apple", "android", "web"],
+  "platforms": [
+    "apple",
+    "android",
+    "web"
+  ],
   "apple": {
-    "modules": ["ReactNativeSelectableTextModule"]
+    "modules": [
+      "ReactNativeSelectableTextModule"
+    ]
   },
   "android": {
-    "modules": ["expo.modules.selectabletext.ReactNativeSelectableTextModule"]
+    "modules": [
+      "expo.modules.selectabletext.ReactNativeSelectableTextModule"
+    ]
   }
 }

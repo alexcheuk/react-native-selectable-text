@@ -1,6 +1,6 @@
 {
   "name": "@alexcheuk/react-native-selectable-text",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "My new module",
   "main": "build/index.js",
   "types": "build/index.d.ts",
